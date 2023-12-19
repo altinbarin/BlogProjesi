@@ -22,6 +22,287 @@ namespace Blog.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Blog.Entity.Entities.AppRole", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("36d41f1d-aa2f-44f1-99cc-3f59bfec10f3"),
+                            ConcurrencyStamp = "d21c4b62-1809-4b2e-9fef-681fd36d807b",
+                            Name = "Superadmin",
+                            NormalizedName = "SUPERADMIN"
+                        },
+                        new
+                        {
+                            Id = new Guid("5a3993bb-7489-46ba-ab9d-812360c815ba"),
+                            ConcurrencyStamp = "b4047b97-c6d8-4f20-8de2-e907575b427a",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = new Guid("5aea0c71-6328-4219-909e-eac98c5f7fd7"),
+                            ConcurrencyStamp = "ef860c9b-00e6-4370-a820-735bb9ca0cfb",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
+                });
+
+            modelBuilder.Entity("Blog.Entity.Entities.AppRoleClaim", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Blog.Entity.Entities.AppUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("4a0f8924-5b95-427e-8e19-c19225c1b880"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1572b98f-0993-4b31-8467-353576b9ce05",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Furkan",
+                            LastName = "Altınbarın",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN@GMAIL.COM",
+                            PhoneNumber = "+095439999988",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "100615a0-81dc-422f-9d15-dd27298b371e",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@gmail.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("372f18fe-fe3f-4826-a47e-8e77260f684b"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "bfafa932-a8b2-40f1-a410-9200281e4f5a",
+                            Email = "superadmin@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Can",
+                            LastName = "Keskin",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SUPERADMIN@GMAIL.COM",
+                            NormalizedUserName = "SUPERADMIN@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHHRHZYItknx2UOcQTvcqtxEUvwjhtn88140esPyp2976VmGkDunqwQAEfots0eQEw==",
+                            PhoneNumber = "+095439999999",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "54e84a52-16d3-465d-8832-c791f6027871",
+                            TwoFactorEnabled = false,
+                            UserName = "superadmin@gmail.com"
+                        });
+                });
+
+            modelBuilder.Entity("Blog.Entity.Entities.AppUserClaim", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Blog.Entity.Entities.AppUserLogin", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Blog.Entity.Entities.AppUserRole", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("372f18fe-fe3f-4826-a47e-8e77260f684b"),
+                            RoleId = new Guid("36d41f1d-aa2f-44f1-99cc-3f59bfec10f3")
+                        },
+                        new
+                        {
+                            UserId = new Guid("4a0f8924-5b95-427e-8e19-c19225c1b880"),
+                            RoleId = new Guid("5a3993bb-7489-46ba-ab9d-812360c815ba")
+                        });
+                });
+
+            modelBuilder.Entity("Blog.Entity.Entities.AppUserToken", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
+
             modelBuilder.Entity("Blog.Entity.Entities.Article", b =>
                 {
                     b.Property<Guid>("Id")
@@ -78,11 +359,11 @@ namespace Blog.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9978d48a-75bc-443d-b80e-a56dde1048b4"),
+                            Id = new Guid("203b7b33-c3f4-4d4f-a5b7-c39e2b91595c"),
                             CategoryId = new Guid("010bb85e-9604-4ac8-b164-1d9034757438"),
                             Content = "Asp.Net Core Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus nisl tincidunt eget nullam non nisi est sit amet. Fermentum posuere urna nec tincidunt praesent. Massa enim nec dui nunc mattis enim ut. Et netus et malesuada fames ac turpis. Aliquam malesuada bibendum arcu vitae elementum. Augue interdum velit euismod in pellentesque massa. Non nisi est sit amet facilisis magna etiam tempor orci. Diam sollicitudin tempor id eu. Dictum at tempor commodo ullamcorper a lacus vestibulum sed. Augue interdum velit euismod in pellentesque massa placerat. Quisque non tellus orci ac. Tortor aliquam nulla facilisi cras fermentum odio eu. Urna nunc id cursus metus aliquam eleifend mi in.\r\n\r\nDuis at consectetur lorem donec. Tortor at risus viverra adipiscing at in. Nisl pretium fusce id velit ut tortor pretium. Cras ornare arcu dui vivamus arcu felis. Sed nisi lacus sed viverra tellus in hac habitasse platea. Vulputate mi sit amet mauris commodo quis imperdiet massa tincidunt. Dui nunc mattis enim ut tellus. Id diam maecenas ultricies mi eget mauris. Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Tincidunt lobortis feugiat vivamus at augue. Ultricies tristique nulla aliquet enim tortor. Ultricies mi quis hendrerit dolor magna eget est. Cras tincidunt lobortis feugiat vivamus at augue eget arcu dictum. Risus commodo viverra maecenas accumsan lacus vel facilisis volutpat est. Elit ut aliquam purus sit amet. Ultricies mi quis hendrerit dolor. Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Ultrices sagittis orci a scelerisque.",
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2023, 12, 19, 2, 34, 24, 256, DateTimeKind.Local).AddTicks(5974),
+                            CreatedDate = new DateTime(2023, 12, 19, 23, 47, 40, 743, DateTimeKind.Local).AddTicks(5737),
                             ImageId = new Guid("214bcd11-2794-4a88-96b5-53580337c0ae"),
                             IsDeleted = false,
                             Title = "Asp.Net Core Deneme Makalesi",
@@ -90,11 +371,11 @@ namespace Blog.Data.Migrations
                         },
                         new
                         {
-                            Id = new Guid("cc7ef75d-2ddb-4f47-83f6-9ec798c3a416"),
+                            Id = new Guid("64fbb785-6a26-4316-b457-cf3e26fc6da4"),
                             CategoryId = new Guid("0f7a15a2-876e-4bf6-b052-d1b84df559d6"),
                             Content = "Visual Studio Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus nisl tincidunt eget nullam non nisi est sit amet. Fermentum posuere urna nec tincidunt praesent. Massa enim nec dui nunc mattis enim ut. Et netus et malesuada fames ac turpis. Aliquam malesuada bibendum arcu vitae elementum. Augue interdum velit euismod in pellentesque massa. Non nisi est sit amet facilisis magna etiam tempor orci. Diam sollicitudin tempor id eu. Dictum at tempor commodo ullamcorper a lacus vestibulum sed. Augue interdum velit euismod in pellentesque massa placerat. Quisque non tellus orci ac. Tortor aliquam nulla facilisi cras fermentum odio eu. Urna nunc id cursus metus aliquam eleifend mi in.\r\n\r\nDuis at consectetur lorem donec. Tortor at risus viverra adipiscing at in. Nisl pretium fusce id velit ut tortor pretium. Cras ornare arcu dui vivamus arcu felis. Sed nisi lacus sed viverra tellus in hac habitasse platea. Vulputate mi sit amet mauris commodo quis imperdiet massa tincidunt. Dui nunc mattis enim ut tellus. Id diam maecenas ultricies mi eget mauris. Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Tincidunt lobortis feugiat vivamus at augue. Ultricies tristique nulla aliquet enim tortor. Ultricies mi quis hendrerit dolor magna eget est. Cras tincidunt lobortis feugiat vivamus at augue eget arcu dictum. Risus commodo viverra maecenas accumsan lacus vel facilisis volutpat est. Elit ut aliquam purus sit amet. Ultricies mi quis hendrerit dolor. Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Ultrices sagittis orci a scelerisque.",
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2023, 12, 19, 2, 34, 24, 256, DateTimeKind.Local).AddTicks(5979),
+                            CreatedDate = new DateTime(2023, 12, 19, 23, 47, 40, 743, DateTimeKind.Local).AddTicks(5742),
                             ImageId = new Guid("b92d05d0-af78-4a73-8c12-69560c7a9f3f"),
                             IsDeleted = false,
                             Title = "Visual Studio Deneme Makalesi",
@@ -143,7 +424,7 @@ namespace Blog.Data.Migrations
                         {
                             Id = new Guid("0f7a15a2-876e-4bf6-b052-d1b84df559d6"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2023, 12, 19, 2, 34, 24, 256, DateTimeKind.Local).AddTicks(6183),
+                            CreatedDate = new DateTime(2023, 12, 19, 23, 47, 40, 743, DateTimeKind.Local).AddTicks(5956),
                             IsDeleted = false,
                             Name = "Visual Studio 2022"
                         },
@@ -151,7 +432,7 @@ namespace Blog.Data.Migrations
                         {
                             Id = new Guid("010bb85e-9604-4ac8-b164-1d9034757438"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2023, 12, 19, 2, 34, 24, 256, DateTimeKind.Local).AddTicks(6186),
+                            CreatedDate = new DateTime(2023, 12, 19, 23, 47, 40, 743, DateTimeKind.Local).AddTicks(5959),
                             IsDeleted = false,
                             Name = "ASP.NET Core"
                         });
@@ -202,7 +483,7 @@ namespace Blog.Data.Migrations
                         {
                             Id = new Guid("214bcd11-2794-4a88-96b5-53580337c0ae"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2023, 12, 19, 2, 34, 24, 256, DateTimeKind.Local).AddTicks(6337),
+                            CreatedDate = new DateTime(2023, 12, 19, 23, 47, 40, 743, DateTimeKind.Local).AddTicks(6111),
                             FileName = "images/testimage",
                             FileType = "jpg",
                             IsDeleted = false
@@ -211,11 +492,62 @@ namespace Blog.Data.Migrations
                         {
                             Id = new Guid("b92d05d0-af78-4a73-8c12-69560c7a9f3f"),
                             CreatedBy = "Admin Test",
-                            CreatedDate = new DateTime(2023, 12, 19, 2, 34, 24, 256, DateTimeKind.Local).AddTicks(6352),
+                            CreatedDate = new DateTime(2023, 12, 19, 23, 47, 40, 743, DateTimeKind.Local).AddTicks(6130),
                             FileName = "images/vstest",
                             FileType = "png",
                             IsDeleted = false
                         });
+                });
+
+            modelBuilder.Entity("Blog.Entity.Entities.AppRoleClaim", b =>
+                {
+                    b.HasOne("Blog.Entity.Entities.AppRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Blog.Entity.Entities.AppUserClaim", b =>
+                {
+                    b.HasOne("Blog.Entity.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Blog.Entity.Entities.AppUserLogin", b =>
+                {
+                    b.HasOne("Blog.Entity.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Blog.Entity.Entities.AppUserRole", b =>
+                {
+                    b.HasOne("Blog.Entity.Entities.AppRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Blog.Entity.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Blog.Entity.Entities.AppUserToken", b =>
+                {
+                    b.HasOne("Blog.Entity.Entities.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Blog.Entity.Entities.Article", b =>
