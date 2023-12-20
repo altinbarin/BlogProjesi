@@ -18,7 +18,9 @@ namespace Blog.Data.Mappings
                     ImageId = Guid.Parse("214BCD11-2794-4A88-96B5-53580337C0AE"),
                     CategoryId = Guid.Parse("010BB85E-9604-4AC8-B164-1D9034757438"),
                     CreatedBy = "Admin Test",
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    IsDeleted = false,
+                    UserId = Guid.Parse("372F18FE-FE3F-4826-A47E-8E77260F684B")
                 },
                   new Article
                   {
@@ -29,7 +31,9 @@ namespace Blog.Data.Mappings
                       CategoryId = Guid.Parse("0F7A15A2-876E-4BF6-B052-D1B84DF559D6"),
                       ImageId = Guid.Parse("B92D05D0-AF78-4A73-8C12-69560C7A9F3F"),
                       CreatedBy = "Admin Test",
-                      CreatedDate = DateTime.Now
+                      CreatedDate = DateTime.Now,
+                      IsDeleted = false,
+                      UserId = Guid.Parse("4A0F8924-5B95-427E-8E19-C19225C1B880")
                   }
 
                 );
