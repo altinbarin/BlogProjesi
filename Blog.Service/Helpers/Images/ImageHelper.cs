@@ -23,6 +23,9 @@ namespace Blog.Service.Helpers.Images
 
         private string ReplaceInvalidChars(string fileName)
         {
+            if(fileName is not null)
+            {
+
             return fileName.Replace("İ", "I")
                  .Replace("ı", "i")
                  .Replace("Ğ", "G")
@@ -71,6 +74,11 @@ namespace Blog.Service.Helpers.Images
                  .Replace(".", "")
                  .Replace(":", "")
                  .Replace(" ", "");
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public async Task<ImageUploadedDto> Upload(string name, IFormFile imageFile, ImageType imageType, string folderName = null)
