@@ -14,13 +14,11 @@
                     <div asp-validation-summary="ModelOnly"></div>
                     <div class="card-body">
                         <div class="form-group">
-
                             <label asp-for="CategoryId">Kategori</label>
 
                             <a class="btn text-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                               Ekle <i class="bx bx-plus"></i>
+                                Ekle <i class="bx bx-plus"></i>
                             </a>
-
 
                             <select id="categoryList" class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories,"Id","Name"))"></select>
                             <span asp-validation-for="CategoryId" class="text-danger"></span>
@@ -80,30 +78,6 @@
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Kategori Ekleme</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                    <form>
-                <div class="form-group">
-                        <label class="d-block form-label">Kategori İsmi</label>
-                        <input class="form-control" type="text" id="categoryName" />
-                </div>
-                    </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-                <button type="button" data-keyboard="false" ="btn btn-primary" id="btnSave">Kaydet</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 @section Scripts
     {

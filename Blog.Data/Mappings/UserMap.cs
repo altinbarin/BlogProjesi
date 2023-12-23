@@ -2,11 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Blog.Data.Mappings
 {
@@ -47,45 +42,43 @@ namespace Blog.Data.Mappings
             // Each User can have many entries in the UserRole join table
             builder.HasMany<AppUserRole>().WithOne().HasForeignKey(ur => ur.UserId).IsRequired();
 
-            
-              var superAdmin =  new AppUser
-                {
-                    Id = Guid.Parse("372F18FE-FE3F-4826-A47E-8E77260F684B"),
-                    UserName = "superadmin@gmail.com",
-                    Email = "superadmin@gmail.com",
-                    NormalizedEmail = "SUPERADMIN@GMAIL.COM",
-                    NormalizedUserName = "SUPERADMIN@GMAIL.COM",
-                    PhoneNumber = "+095439999999",
-                    FirstName = "Can",
-                    LastName = "Keskin",
-                    PhoneNumberConfirmed = true,
-                    EmailConfirmed = true,
-                    SecurityStamp = Guid.NewGuid().ToString(),
-                    ImageId = Guid.Parse("214BCD11-2794-4A88-96B5-53580337C0AE")
-              };
-                superAdmin.PasswordHash = CreatePasswordHash(superAdmin, "123456");
+            var superadmin = new AppUser
+            {
+                Id = Guid.Parse("CB94223B-CCB8-4F2F-93D7-0DF96A7F065C"),
+                UserName = "superadmin@gmail.com",
+                NormalizedUserName = "SUPERADMIN@GMAIL.COM",
+                Email = "superadmin@gmail.com",
+                NormalizedEmail = "SUPERADMIN@GMAIL.COM",
+                PhoneNumber = "+905439999999",
+                FirstName = "Cem",
+                LastName = "Keskin",
+                PhoneNumberConfirmed = true,
+                EmailConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                ImageId = Guid.Parse("F71F4B9A-AA60-461D-B398-DE31001BF214")
+            };
+            superadmin.PasswordHash = CreatePasswordHash(superadmin, "123456");
 
             var admin = new AppUser
             {
-                Id = Guid.Parse("4A0F8924-5B95-427E-8E19-C19225C1B880"),
+                Id = Guid.Parse("3AA42229-1C0F-4630-8C1A-DB879ECD0427"),
                 UserName = "admin@gmail.com",
+                NormalizedUserName = "ADMIN@GMAIL.COM",
                 Email = "admin@gmail.com",
                 NormalizedEmail = "ADMIN@GMAIL.COM",
-                NormalizedUserName = "ADMIN@GMAIL.COM",
-                PhoneNumber = "+095439999988",
-                FirstName = "Furkan",
-                LastName = "Altınbarın",
+                PhoneNumber = "+905439999988",
+                FirstName = "Admin",
+                LastName = "User",
                 PhoneNumberConfirmed = false,
                 EmailConfirmed = false,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                ImageId = Guid.Parse("B92D05D0-AF78-4A73-8C12-69560C7A9F3F")
+                ImageId = Guid.Parse("D16A6EC7-8C50-4AB0-89A5-02B9A551F0FA")
             };
-            superAdmin.PasswordHash = CreatePasswordHash(superAdmin, "123456");
+            admin.PasswordHash = CreatePasswordHash(admin, "123456");
 
-            builder.HasData(admin, superAdmin);
+            builder.HasData(superadmin, admin);
 
         }
-
         private string CreatePasswordHash(AppUser user, string password)
         {
             var passwordHasher = new PasswordHasher<AppUser>();

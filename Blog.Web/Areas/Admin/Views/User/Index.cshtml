@@ -1,10 +1,7 @@
 ﻿@model List<UserDto>
 
-
 <div class="container-xxl flex-grow-1 container-p-y">
-
-
-    <h4 class="py-3 mb-4">
+    <h4 class="fw-bold py-3 mb-4">
         <span class="text-muted fw-light">Kullanıcı Yönetimi /</span> Kullanıcılar
     </h4>
 
@@ -24,8 +21,8 @@
                         <th>Email</th>
                         <th>Telefon Numarası</th>
                         <th>Rol</th>
-                        <th>Email Doğrulaması</th>
-                        <th>Bağlantı Hataları</th>
+                        <th>Email doğrulaması</th>
+                        <th>Bağlantı hataları</th>
                         <th>İşlemler</th>
                     </tr>
                 </thead>
@@ -36,8 +33,8 @@
                         <th>Email</th>
                         <th>Telefon Numarası</th>
                         <th>Rol</th>
-                        <th>Email Doğrulaması</th>
-                        <th>Bağlantı Hataları</th>
+                        <th>Email doğrulaması</th>
+                        <th>Bağlantı hataları</th>
                         <th>İşlemler</th>
                     </tr>
                 </tfoot>
@@ -52,11 +49,10 @@
                             <td>@user.Role</td>
                             <td>@(user.EmailConfirmed ? "Doğrulanmış" : "Doğrulanmamış")</td>
                             <td>@user.AccessFailedCount</td>
-                            
                             <td>
                                 <a class="btn btn-primary btn-sm" data-id="@user.Id" asp-area="Admin" asp-controller="User" asp-action="Update" asp-route-userId="@user.Id"><i class="bx bxs-edit"></i></a>
-
                                 <a class="btn btn-danger btn-sm" data-id="@user.Id" asp-area="Admin" asp-controller="User" asp-action="Delete" asp-route-userId="@user.Id"><i class="bx bx-minus-circle"></i></a>
+
                             </td>
                         </tr>
                     }
@@ -64,11 +60,8 @@
             </table>
         </div>
     </div>
-
-
 </div>
-
 
 @section Scripts{
     <script src="~/js/userIndex.js" type="application/ecmascript"></script>
- }
+}

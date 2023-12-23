@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿
+
+$(document).ready(function () {
 
     $("#btnSave").click(function (event) {
         event.preventDefault();
@@ -17,7 +19,7 @@
             url: addUrl,
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            dataType: "json",
+            dataType : "json",
             data: jsonData,
             success: function (data) {
                 setTimeout(function () {

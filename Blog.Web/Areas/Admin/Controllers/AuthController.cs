@@ -12,18 +12,16 @@ namespace Blog.Web.Areas.Admin.Controllers
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
 
-        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AuthController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
-
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)
@@ -31,12 +29,12 @@ namespace Blog.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var user = await userManager.FindByEmailAsync(userLoginDto.Email);
-                if (user != null)
+                if(user != null)
                 {
                     var result = await signInManager.PasswordSignInAsync(user, userLoginDto.Password, userLoginDto.RememberMe, false);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index", "Home", new {Area="Admin"});
+                        return RedirectToAction("Index", "Home", new { Area = "Admin" });
                     }
                     else
                     {
@@ -55,14 +53,18 @@ namespace Blog.Web.Areas.Admin.Controllers
                 return View();
             }
         }
-
-
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> Logout() 
+        public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home", new { Area = "" });
+        }
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> AccessDenied()
+        {
+            return View();
         }
     }
 }
