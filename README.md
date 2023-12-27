@@ -1,3 +1,6 @@
+This website allows the admin to create and publish blog posts for visitors to view. The project follows MVC architecture and leverages various technologies such as MS SQL, Identity, Fluent Validation, Unit of Work, and AutoMapper.
+
+
 ![AdminLogin](https://github.com/altinbarin/BlogProjesi/assets/139159483/bfb9a170-8292-41d9-8fe3-b9737f63df5a)
   Admin Login Page
 ![adminPanel](https://github.com/altinbarin/BlogProjesi/assets/139159483/41afe2c2-9237-4ef9-856d-1fe74c14d07e)
